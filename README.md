@@ -1,5 +1,7 @@
 CREATE DATABASE citas_medicas;
 USE citas_medicas;
+
+
 CREATE TABLE pacientes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -7,10 +9,14 @@ CREATE TABLE pacientes (
     telefono VARCHAR(20),
     email VARCHAR(100) UNIQUE
 );
+
+
 CREATE TABLE especialidades (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL UNIQUE
 );
+
+
 CREATE TABLE medicos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -19,6 +25,8 @@ CREATE TABLE medicos (
     horario_fin TIME NOT NULL,
     FOREIGN KEY (especialidad_id) REFERENCES especialidades(id) ON DELETE CASCADE
 );
+
+
 CREATE TABLE citas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     paciente_id INT NOT NULL,
@@ -29,10 +37,14 @@ CREATE TABLE citas (
     FOREIGN KEY (paciente_id) REFERENCES pacientes(id) ON DELETE CASCADE,
     FOREIGN KEY (medico_id) REFERENCES medicos(id) ON DELETE CASCADE
 );
+
+
 SHOW TABLES;
 DESC pacientes;
 DESC medicos;
 DESC citas;
+
+
 INSERT INTO especialidades (nombre) VALUES ('Cardiología'), ('Dermatología'), ('Pediatría');
 
 INSERT INTO medicos (nombre, especialidad_id, horario_inicio, horario_fin) 
